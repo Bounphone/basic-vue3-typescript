@@ -1,30 +1,53 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <h1>App.vue</h1>
+    <span>Count1: {{ count1 }}</span> <br />
+    <span>Count2: {{ count2 }}</span> <br />
+    <button @click="onClickAdd1">Add1</button>
+    <button @click="onClickAdd2">Add2</button>
+    <hr />
+    <span>Account: {{ state.account }}</span>
+    <button @click="onClickClearAccount">Clear</button>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { defineComponent, onMounted, reactive, ref } from "vue";
 
-nav {
-  padding: 30px;
-}
+const defaultAccount = { username: "", password: "" };
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default defineComponent({
+  setup() {
+    let count1 = 100;
+    const count2 = ref<number>(2);
+    const state = reactive({
+      account: { username: "admin", password: "123" },
+    });
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+    onMounted(() => {
+      // setInterval(onClickAdd2, 1000);
+    });
+
+    const onClickAdd1 = () => {
+      count1 += count1;
+    };
+
+    const onClickAdd2 = () => {
+      count2.value += count2.value;
+    };
+
+    const onClickClearAccount = () => {
+      state.account = defaultAccount;
+    };
+
+    return {
+      count1,
+      count2,
+      state,
+      onClickAdd1,
+      onClickAdd2,
+      onClickClearAccount,
+    };
+  },
+});
+</script>
