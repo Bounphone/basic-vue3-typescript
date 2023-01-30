@@ -1,15 +1,17 @@
 <template>
     <div>
-        <h1>Login Form</h1>
+        <h1>{{ title }}</h1>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
 export default defineComponent({
-    setup() {
-        {}
+    props : ['title'],
+    setup(props) {
+        {
+            return {}
+        }
     },
 })
 </script>
