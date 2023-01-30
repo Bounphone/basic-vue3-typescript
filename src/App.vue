@@ -8,15 +8,19 @@
     <hr />
     <span>Account: {{ state.account }}</span>
     <button @click="onClickClearAccount">Clear</button>
+    <hr>
+    <LoginForm/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from "vue";
+import LoginForm from "@/components/LoginForm.vue";
 
 const defaultAccount = { username: "", password: "" };
 
 export default defineComponent({
+  components: { LoginForm },
   setup() {
     let count1 = 100;
     const count2 = ref<number>(2);
